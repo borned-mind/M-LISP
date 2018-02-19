@@ -9,7 +9,7 @@
 
 
 // to template? hm
-#define GETNEWLINE(buffer, index) while(buffer[index]!=(int)grammarly::newline && buffer[index++]) 
+#define GETNEWLINE(buffer, index) while(buffer[index]!=grammarly.find("newline")->second && buffer[index++]) 
 
 #define LEXER_GET(func, buf, index, type, add, returns)\
 {\
@@ -31,7 +31,7 @@ using charptr = char*;
 constexpr std::size_t buff_size = 1024;
 
 namespace grammar{
-	const std::map<std::string , char> grammarly_=
+	const std::map<std::string , char> grammarly=
 	{
 		{"space", ' '},
 		{"newline", '\n'},
@@ -51,13 +51,7 @@ namespace grammar{
 		{"block_end" , '}'},			
 	};
 
-	enum class grammarly{
-		newline = '\n', number='n', 
-		assign='=', plus='+', minus='-', divide='/', multiply='*',
-		identificator='i', type='t', 
-		round_begin='(', round_end=')',
-		block_begin='{', block_end='}', comment=';'
-	};
+
 	bool isNumerical(char ch);
 	bool isLetter(char ch);
 
